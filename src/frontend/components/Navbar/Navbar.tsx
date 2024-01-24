@@ -31,10 +31,10 @@ export default function Navbar() {
         navbarButtonElements = (
             <>
                 <Button variant="contained">
-                    <Link href="login">Login</Link>
+                    <Link href="/login">Login</Link>
                 </Button>
                 <Button variant="contained">
-                    <Link href="signup">Signup</Link>
+                    <Link href="/signup">Signup</Link>
                 </Button>
             </>
         );
