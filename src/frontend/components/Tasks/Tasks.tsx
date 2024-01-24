@@ -10,7 +10,6 @@ type Props = {
 
 export default function Tasks({ allTasks }: Props) {
     // TODO: DO NOT RENDER TASKS IF user id doe snot match url user id.
-    console.log(allTasks);
     return (
         <section className={styles.container}>
             {allTasks.map((task) => (

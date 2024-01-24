@@ -1,3 +1,4 @@
+import Navbar from "@/frontend/components/Navbar/Navbar";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
@@ -18,7 +19,10 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={roboto.className}>
-                <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+                <AppRouterCacheProvider>
+                    <Navbar />
+                    {children}
+                </AppRouterCacheProvider>
             </body>
         </html>
     );
