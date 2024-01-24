@@ -1,6 +1,6 @@
-import UserExcerpt from "@/frontend/UserExcerpt/UserExcerpt";
 import fetchUsers from "@/frontend/api/fetchUsers";
 import PageLayout from "@/frontend/components/PageLayout/PageLayout";
+import UserExcerpt from "@/frontend/components/UserExcerpt/UserExcerpt";
 import { FetchUserResponse } from "@/shared/types";
 
 export default async function page() {

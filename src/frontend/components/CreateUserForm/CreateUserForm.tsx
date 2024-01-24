@@ -1,7 +1,7 @@
 "use client";
 
-import SuccessMessage from "@/frontend/SuccessMessage/SuccessMessage";
 import createUser from "@/frontend/api/createUser";
+import SuccessMessage from "@/frontend/components/SuccessMessage/SuccessMessage";
 import useGetUserIdFromLocalStorage from "@/frontend/hooks/useGetUserIdFromLocalStorage";
 import { CreateUserBody } from "@/shared/types";
 import { Button, TextField } from "@mui/material";

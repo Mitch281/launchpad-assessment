@@ -1,7 +1,7 @@
 "use client";
 
-import SuccessMessage from "@/frontend/SuccessMessage/SuccessMessage";
 import createTask from "@/frontend/api/createTask";
+import SuccessMessage from "@/frontend/components/SuccessMessage/SuccessMessage";
 import { CreateTaskBody, Priority } from "@/shared/types";
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";

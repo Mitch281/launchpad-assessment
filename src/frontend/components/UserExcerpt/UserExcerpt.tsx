@@ -5,8 +5,8 @@ import { Button } from "@mui/material";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { startTransition } from "react";
-import deleteUser from "../api/deleteUser";
-import useGetUserIdFromLocalStorage from "../hooks/useGetUserIdFromLocalStorage";
+import deleteUser from "../../api/deleteUser";
+import useGetUserIdFromLocalStorage from "../../hooks/useGetUserIdFromLocalStorage";
 import styles from "./user-excerpt.module.css";
 
 type Props = {
