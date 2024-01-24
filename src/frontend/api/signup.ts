@@ -11,5 +11,6 @@ export default async function signup(body: SignupBody) {
     if (!response.ok) {
         throw new Error(json.message);
     }
+    localStorage.setItem("userId", (json.data?.userId as number).toString());
     return json;
 }

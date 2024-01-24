@@ -10,6 +10,9 @@ export type SignupBody = {
 
 export type LoginResponse = {
     message: string;
+    data?: {
+        userId: number;
+    };
 };
 
 export type SignupResponse = LoginResponse;

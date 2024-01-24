@@ -11,18 +11,20 @@ export async function POST(request: NextRequest) {
         );
     }
     try {
-        await prisma.user.create({
+        const newUser = await prisma.user.create({
             data: body,
         });
+        return NextResponse.json(
+            {
+                message: "Successfully created account!",
+                data: { userId: newUser.id },
+            },
+            { status: 201 }
+        );
     } catch (error) {
         return NextResponse.json(
             { message: "There was an error creating the account!" },
             { status: 400 }
         );
     }
-
-    return NextResponse.json(
-        { message: "Successfully created account!" },
-        { status: 201 }
-    );
 }
