@@ -1,3 +1,10 @@
+import Form from "@/frontend/components/Form/Form";
+import PageLayout from "@/frontend/components/PageLayout/PageLayout";
+
 export default function Page() {
-    return <div></div>;
+    return (
+        <PageLayout>
+            <Form type="Signup" />
+        </PageLayout>
+    );
 }
