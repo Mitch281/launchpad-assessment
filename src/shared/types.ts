@@ -1,3 +1,5 @@
+import { Task } from "@prisma/client";
+
 export type LoginBody = {
     usernameOrEmail: string;
 };
@@ -18,13 +20,7 @@ export type LoginResponse = {
 
 export type SignupResponse = LoginResponse;
 
-export type Priority = "low" | "medium" | "high";
-
 export type FetchTasksResponse = {
     message: string;
-    data?: {
-        id: string;
-        userId: string;
-        priority: Priority;
-    }[];
+    data?: Task[];
 };

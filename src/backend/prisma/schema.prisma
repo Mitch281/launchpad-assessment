@@ -16,10 +16,13 @@ model User {
 }
 
 model Task {
-    id       Int          @id @default(autoincrement())
-    user     User         @relation(fields: [userId], references: [id])
-    userId   Int
-    priority TaskPriority
+    id          Int          @id @default(autoincrement())
+    user        User         @relation(fields: [userId], references: [id])
+    userId      Int
+    title       String
+    description String
+    priority    TaskPriority
+    dueDate     DateTime     @default(now())
 }
 
 enum TaskPriority {

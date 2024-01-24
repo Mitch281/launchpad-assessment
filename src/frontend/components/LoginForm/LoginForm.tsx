@@ -1,10 +1,10 @@
 "use client";
 
 import login from "@/frontend/api/login";
-import { LoginBody } from "@/shared/types";
+import { LoginBody, LoginResponse } from "@/shared/types";
 import { Button, TextField } from "@mui/material";
 import Link from "next/link";
-import router from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Form from "../Form/Form";
 import styles from "./login-form.module.css";
@@ -12,6 +12,7 @@ import styles from "./login-form.module.css";
 export default function LoginForm() {
     const [usernameOrEmail, setUsernameOrEmail] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const router = useRouter();
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -19,8 +20,8 @@ export default function LoginForm() {
             usernameOrEmail,
         };
         try {
-            await login(body);
-            router.push("/tasks");
+            const response: LoginResponse = await login(body);
+            router.push(`/tasks/${response.data?.userId}`);
         } catch (error: unknown) {
             setErrorMessage(error.message);
         }

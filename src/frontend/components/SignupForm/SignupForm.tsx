@@ -1,7 +1,7 @@
 "use client";
 
 import signup from "@/frontend/api/signup";
-import { SignupBody } from "@/shared/types";
+import { SignupBody, SignupResponse } from "@/shared/types";
 import { Button, TextField } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,8 +23,8 @@ export default function SignupForm() {
             isAdmin: false,
         };
         try {
-            await signup(body);
-            router.push("/tasks");
+            const response: SignupResponse = await signup(body);
+            router.push(`/tasks/${response.data?.userId}`);
         } catch (error: unknown) {
             setErrorMessage(error.message);
         }
