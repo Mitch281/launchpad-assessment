@@ -17,3 +17,14 @@ export type LoginResponse = {
 };
 
 export type SignupResponse = LoginResponse;
+
+export type Priority = "low" | "medium" | "high";
+
+export type FetchTasksResponse = {
+    message: string;
+    data?: {
+        id: string;
+        userId: string;
+        priority: Priority;
+    }[];
+};
