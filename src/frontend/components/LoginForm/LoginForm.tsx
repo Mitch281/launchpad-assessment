@@ -21,7 +21,11 @@ export default function LoginForm() {
         };
         try {
             const response: LoginResponse = await login(body);
-            router.push(`/tasks/${response.data?.userId}`);
+            if (response.data?.isAdmin) {
+                router.push("admin");
+            } else {
+                router.push(`/tasks/${response.data?.userId}`);
+            }
         } catch (error: unknown) {
             setErrorMessage(error.message);
         }

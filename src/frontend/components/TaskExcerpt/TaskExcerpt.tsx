@@ -7,6 +7,7 @@ type Props = {
 };
 
 export default function TaskExcerpt({ task }: Props) {
+    console.log(task);
     return (
         <div className={styles.container}>
             <div>{task.title}</div>

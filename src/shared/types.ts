@@ -24,3 +24,21 @@ export type FetchTasksResponse = {
     message: string;
     data?: Task[];
 };
+
+export type Priority = "low" | "medium" | "high";
+
+export type CreateTaskBody = {
+    newTask: {
+        userId: number;
+        title: string;
+        description: string;
+        priority: Priority;
+        dueDate: Date;
+    };
+    userIdOfCreator: string;
+};
+
+export type CreateTaskResponse = {
+    message: string;
+    task: Task;
+};
