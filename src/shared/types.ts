@@ -1,4 +1,6 @@
-import { Task } from "@prisma/client";
+import { Task, User } from "@prisma/client";
+
+// TODO: Move responses here to frontend types folder.
 
 export type LoginBody = {
     usernameOrEmail: string;
@@ -46,4 +48,9 @@ export type CreateTaskResponse = {
 export type CreateUserBody = {
     newUser: SignupBody;
     userIdOfCreator: string;
+};
+
+export type FetchUserResponse = {
+    message: string;
+    data?: User[];
 };
