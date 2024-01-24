@@ -1,9 +1,9 @@
-import { LoginBody, SignupResponse } from "@/shared/types";
+import { SignupBody, SignupResponse } from "@/shared/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default async function signup(body: LoginBody) {
-    const response = await fetch(`${API_URL}/login`, {
+export default async function signup(body: SignupBody) {
+    const response = await fetch(`${API_URL}/signup`, {
         method: "POST",
         body: JSON.stringify(body),
     });

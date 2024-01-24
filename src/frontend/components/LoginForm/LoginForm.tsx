@@ -9,7 +9,7 @@ export default function LoginForm() {
     const [usernameOrEmail, setUsernameOrEmail] = useState("");
 
     return (
-        <Form>
+        <Form onSubmit={() => {}}>
             <h1>Login</h1>
             <TextField
                 variant="outlined"
