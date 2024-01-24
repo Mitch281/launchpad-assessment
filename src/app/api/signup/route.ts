@@ -1,4 +1,4 @@
-import prisma from "@/backend/lib/prisma";
+import AuthService from "@/backend/services/AuthService";
 import { SignupBody } from "@/shared/types";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,21 +10,5 @@ export async function POST(request: NextRequest) {
             { status: 403 }
         );
     }
-    try {
-        const newUser = await prisma.user.create({
-            data: body,
-        });
-        return NextResponse.json(
-            {
-                message: "Successfully created account!",
-                data: { userId: newUser.id, isAdmin: newUser.isAdmin },
-            },
-            { status: 201 }
-        );
-    } catch (error) {
-        return NextResponse.json(
-            { message: "There was an error creating the account!" },
-            { status: 400 }
-        );
-    }
+    return AuthService.createUser(body);
 }

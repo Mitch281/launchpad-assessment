@@ -42,3 +42,8 @@ export type CreateTaskResponse = {
     message: string;
     task: Task;
 };
+
+export type CreateUserBody = {
+    newUser: SignupBody;
+    userIdOfCreator: string;
+};
