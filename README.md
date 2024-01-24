@@ -17,5 +17,5 @@ To run the app, run the following commands:
 ```
 npm install
 npx prisma db push
-npm run deb
+npm run dev
 ```
