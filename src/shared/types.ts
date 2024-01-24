@@ -54,3 +54,8 @@ export type FetchUserResponse = {
     message: string;
     data?: User[];
 };
+
+export type DeleteUserBody = {
+    userIdToDelete: string;
+    deleterUserId: string;
+}
