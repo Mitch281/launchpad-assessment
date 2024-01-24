@@ -18,9 +18,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={roboto.className}>
-                <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-                    {children}
-                </AppRouterCacheProvider>
+                <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
             </body>
         </html>
     );
