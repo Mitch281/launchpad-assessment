@@ -3,6 +3,21 @@ import { NextResponse } from "next/server";
 import prisma from "../lib/prisma";
 
 export default class AuthService {
+    public static async checkRequestSenderIsAdmin(userId: string) {
+        const creator = await prisma.user.findFirst({
+            where: { id: parseInt(userId) },
+        });
+        if (!creator) {
+            return false;
+        }
+
+        if (!creator.isAdmin) {
+            return false;
+        }
+
+        return true;
+    }
+
     public static async createUser(body: SignupBody): Promise<NextResponse> {
         try {
             const newUser = await prisma.user.create({
