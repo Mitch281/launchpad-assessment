@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
             {
                 message: "Successfully created account!",
-                data: { userId: newUser.id },
+                data: { userId: newUser.id, isAdmin: newUser.isAdmin },
             },
             { status: 201 }
         );

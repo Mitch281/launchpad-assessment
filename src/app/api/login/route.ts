@@ -21,7 +21,10 @@ export async function POST(request: NextRequest) {
     }
     const user = usernameCheck || emailCheck;
     return NextResponse.json(
-        { message: "Successfully logged in", data: { userId: user.id } },
+        {
+            message: "Successfully logged in",
+            data: { userId: user?.id, isAdmin: user?.isAdmin },
+        },
         { status: 200 }
     );
 }
