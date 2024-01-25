@@ -1,13 +1,11 @@
 import { Task } from "@prisma/client";
 import styles from "./task-excerpt.module.css";
-("");
 
 type Props = {
     task: Task;
 };
 
 export default function TaskExcerpt({ task }: Props) {
-    console.log(task);
     return (
         <div className={styles.container}>
             <h1>{task.title}</h1>
