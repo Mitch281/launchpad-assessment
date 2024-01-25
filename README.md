@@ -29,6 +29,7 @@ The provided .env file contains the database connection credentials. For simplic
 - Not every API route has relevant permission checks.
 ## Non-completed Non-Functional Tasks
 - Unfortunately, I did not have enough time to clean up all backend business logic into a services folder, which would have been cleaner.
+- Maybe could have cleaned up ```frontend/``` folder particularly the ```components/``` folder.
 # Folder Structure
 All code lives in the ```src/``` folder. Within the ```src/``` folder, we have four folders: ```app/```, ```backend/```, ```frontend/```, and ```shared/```. 
 
