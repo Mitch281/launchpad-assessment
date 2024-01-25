@@ -32,7 +32,8 @@ export default function UserExcerpt({ user }: Props) {
     }
     return (
         <div className={styles.container}>
-            {user.username}
+            <span>{user.username}</span>
+            <span>Is Admin: {user.isAdmin ? "Yes" : "No"}</span>
             <Button
                 onClick={invokeDeleteUser}
                 className={styles.deleteButton}
