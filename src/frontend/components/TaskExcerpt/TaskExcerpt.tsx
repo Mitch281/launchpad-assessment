@@ -48,12 +48,18 @@ export default function TaskExcerpt({ task }: Props) {
         );
     }
 
+    let userIdOfTaskElement = <></>;
+    if (isAdmin) {
+        userIdOfTaskElement = <span>User ID: {task.userId}</span>;
+    }
+
     return (
         <div className={taskClasses}>
             <h1>{task.title}</h1>
             <p>{task.description}</p>
             <span>Priority: {task.priority}</span>
             {completeTaskButton}
+            {userIdOfTaskElement}
             <ErrorMessage errorMessage={completeTaskErrorMessage} />
         </div>
     );
