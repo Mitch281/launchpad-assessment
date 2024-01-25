@@ -2,6 +2,8 @@
 This application uses React with Next.js. On the backend, it utilises the native API routes that Next.js provides. We use a Postgresql database supplied by ElephantSQL, and Prisma for our ORM.
 
 Additionally, we use TypeScript for type safety.
+
+The provided .env file contains the database connection credentials. For simplicity, I have pushed the the credentials that I have used so that running the application is easier.
 # Features
 ## Completed
 - Dummy user authentication.
