@@ -40,7 +40,7 @@ export default function TaskExcerpt({ task }: Props) {
     }
 
     let completeTaskButton = <></>;
-    if (!isAdmin) {
+    if (!isAdmin && !task.isComplete) {
         completeTaskButton = (
             <Button variant="contained" onClick={invokeCompleteTask}>
                 Complete Task
