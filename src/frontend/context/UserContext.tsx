@@ -1,6 +1,7 @@
 "use client";
 
-import React, { createContext, useState } from "react";
+import { usePathname } from "next/navigation";
+import React, { createContext, useEffect, useState } from "react";
 import { UserContextType } from "../types";
 
 const UserContext = createContext<UserContextType>({
@@ -16,6 +17,15 @@ function UserContextProvider({ children }: { children: React.ReactNode }) {
     const [userIdLoggedIn, setUserIdLoggedIn] = useState("");
     const [usernameLoggedIn, setUsernameLoggedIn] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        setUserIdLoggedIn(localStorage.getItem("userId") as string);
+        setUsernameLoggedIn(localStorage.getItem("username") as string);
+        const isAdminLocal =
+            localStorage.getItem("isAdmin") === "true" ? true : false;
+        setIsAdmin(isAdminLocal);
+    }, [pathname]);
 
     return (
         <UserContext.Provider
