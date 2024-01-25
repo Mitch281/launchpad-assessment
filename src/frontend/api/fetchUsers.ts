@@ -1,11 +1,7 @@
 import { FetchUserResponse } from "@/shared/types";
+import getApiUrl from "../utils/getApiUrl";
 
-let API_URL = "";
-if (typeof window === "undefined") {
-    API_URL = process.env.API_URL as string;
-} else {
-    API_URL = process.env.NEXT_PUBLIC_API_URL as string;
-}
+const API_URL = getApiUrl();
 
 export default async function fetchUsers() {
     const response = await fetch(`${API_URL}/users`, {

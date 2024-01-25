@@ -1,6 +1,7 @@
 import { LoginBody, LoginResponse } from "@/shared/types";
+import getApiUrl from "../utils/getApiUrl";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = getApiUrl();
 
 export default async function signup(body: LoginBody) {
     const response = await fetch(`${API_URL}/login`, {

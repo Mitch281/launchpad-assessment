@@ -17,7 +17,6 @@ export default class AuthService {
 
         return true;
     }
-
     public static async createUser(body: SignupBody): Promise<NextResponse> {
         try {
             const newUser = await prisma.user.create({

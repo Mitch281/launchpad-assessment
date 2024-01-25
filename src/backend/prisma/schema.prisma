@@ -23,6 +23,7 @@ model Task {
     description String
     priority    TaskPriority
     dueDate     DateTime     @default(now())
+    isComplete  Boolean      @default(false)
 }
 
 enum TaskPriority {

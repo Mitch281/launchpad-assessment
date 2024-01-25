@@ -58,4 +58,9 @@ export type FetchUserResponse = {
 export type DeleteUserBody = {
     userIdToDelete: string;
     deleterUserId: string;
-}
+};
+
+export type CompleteTaskBody = {
+    senderUserId: string;
+    taskId: string;
+};

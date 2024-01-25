@@ -1,6 +1,7 @@
 import { CreateTaskResponse, DeleteUserBody } from "@/shared/types";
+import getApiUrl from "../utils/getApiUrl";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = getApiUrl();
 
 export default async function deleteUser(body: DeleteUserBody) {
     const response = await fetch(`${API_URL}/delete-user`, {
