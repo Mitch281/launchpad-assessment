@@ -1,11 +1,13 @@
 "use client";
 
 import signup from "@/frontend/api/signup";
+import { UserContext } from "@/frontend/context/UserContext";
+import AuthService from "@/frontend/services/AuthService";
 import { SignupBody, SignupResponse } from "@/shared/types";
 import { Button, TextField } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Form from "../Form/Form";
 import styles from "./signup-form.module.css";
 
@@ -14,6 +16,7 @@ export default function SignupForm() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const { setUserIdLoggedIn, setIsAdmin } = useContext(UserContext);
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -24,6 +27,12 @@ export default function SignupForm() {
         };
         try {
             const response: SignupResponse = await signup(body);
+            AuthService.loginUser(
+                response.data!.userId.toString(),
+                response.data!.isAdmin,
+                setUserIdLoggedIn,
+                setIsAdmin
+            );
             router.push(`/tasks/${response.data?.userId}`);
         } catch (error: unknown) {
             setErrorMessage(error.message);

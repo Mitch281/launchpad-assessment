@@ -1,11 +1,13 @@
 "use client";
 
 import login from "@/frontend/api/login";
+import { UserContext } from "@/frontend/context/UserContext";
+import AuthService from "@/frontend/services/AuthService";
 import { LoginBody, LoginResponse } from "@/shared/types";
 import { Button, TextField } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Form from "../Form/Form";
 import styles from "./login-form.module.css";
 
@@ -13,6 +15,7 @@ export default function LoginForm() {
     const [usernameOrEmail, setUsernameOrEmail] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const router = useRouter();
+    const { setUserIdLoggedIn, setIsAdmin } = useContext(UserContext);
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -26,6 +29,12 @@ export default function LoginForm() {
             } else {
                 router.push(`/tasks/${response.data?.userId}`);
             }
+            AuthService.loginUser(
+                response.data!.userId.toString(),
+                response.data!.isAdmin,
+                setUserIdLoggedIn,
+                setIsAdmin
+            );
         } catch (error: unknown) {
             setErrorMessage(error.message);
         }

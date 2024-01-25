@@ -12,7 +12,5 @@ export default async function signup(body: LoginBody) {
     if (!response.ok) {
         throw new Error(json.message);
     }
-    localStorage.setItem("userId", (json.data?.userId as number).toString());
-    localStorage.setItem("isAdmin", (json.data?.isAdmin as boolean).toString());
     return json;
 }
