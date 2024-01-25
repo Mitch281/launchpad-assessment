@@ -19,9 +19,9 @@ All code lives in the ```src/``` folder. Within the ```src/``` folder, we have f
 
 The ```app/``` folder controls our routing on both the frontend and backend (all routes under ```api/``` folder is routed to backend, everything else to frontend).
 
-The ```backend/``` folder contains backend code including database schemas, services, and prisma integration.
+The ```backend/``` folder contains backend code including database schemas, services, and prisma integration. To view the database schema, please go to the ```schema.prisma``` file in the ```prisma/``` folder.
 
-The ```frontend/``` folder contains frontend React code, mostly components.
+The ```frontend/``` folder contains frontend React code, including components, all CSS, frontend services, and context.
 
 Finally, the ```shared/``` folder contains code relevant to both the backend and frontend. In this project, this only contains shared types, but this would contain more in a bigger project.
 # Running the App
