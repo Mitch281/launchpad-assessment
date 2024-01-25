@@ -1,18 +1,15 @@
 "use client";
 
+import { UserContext } from "@/frontend/context/UserContext";
 import { Button } from "@mui/material";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import styles from "./admin-dashboard.module.css";
 
 export default function AdminDashboard() {
-    const [isAdmin, setIsAdmin] = useState<string | null>(null);
+    const { isAdmin } = useContext(UserContext);
 
-    useEffect(() => {
-        setIsAdmin(localStorage.getItem("isAdmin"));
-    }, []);
-
-    if (isAdmin !== "true") {
+    if (!isAdmin) {
         return <div>Only admins can access this page.</div>;
     }
 

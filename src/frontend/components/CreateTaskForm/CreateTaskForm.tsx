@@ -3,10 +3,11 @@
 import createTask from "@/frontend/api/createTask";
 import fetchUsers from "@/frontend/api/fetchUsers";
 import SuccessMessage from "@/frontend/components/SuccessMessage/SuccessMessage";
+import { UserContext } from "@/frontend/context/UserContext";
 import { CreateTaskBody, Priority } from "@/shared/types";
 import { Button, TextField } from "@mui/material";
 import { User } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Form from "../Form/Form";
 
@@ -17,14 +18,10 @@ export default function CreateTaskForm() {
     const [date, setDate] = useState("");
     const [priority, setPriority] = useState<Priority>("low");
 
-    const [userIdOfCreator, setUserIdOfCreator] = useState<string | null>("");
+    const { userIdLoggedIn } = useContext(UserContext);
     const [errorMessage, setErrorMessage] = useState("");
     const [isSuccessful, setIsSuccessful] = useState(false);
     const [users, setUsers] = useState<User[]>([]);
-
-    useEffect(() => {
-        setUserIdOfCreator(localStorage.getItem("userId"));
-    }, []);
 
     useEffect(() => {
         async function invokeFetchUsers() {
@@ -49,7 +46,7 @@ export default function CreateTaskForm() {
                 dueDate: new Date(date),
                 priority,
             },
-            userIdOfCreator: userIdOfCreator || "",
+            userIdOfCreator: userIdLoggedIn || "",
         };
         try {
             setIsSuccessful(false);
@@ -57,7 +54,8 @@ export default function CreateTaskForm() {
             setErrorMessage("");
             setIsSuccessful(true);
         } catch (error) {
-            setErrorMessage(error.message);
+            let createTaskError = error as Error;
+            setErrorMessage(createTaskError.message);
         }
     }
 

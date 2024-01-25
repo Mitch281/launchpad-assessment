@@ -1,12 +1,12 @@
 "use client";
 
+import { UserContext } from "@/frontend/context/UserContext";
 import { DeleteUserBody } from "@/shared/types";
 import { Button } from "@mui/material";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { startTransition } from "react";
+import { startTransition, useContext } from "react";
 import deleteUser from "../../api/deleteUser";
-import useGetUserIdFromLocalStorage from "../../hooks/useGetUserIdFromLocalStorage";
 import styles from "./user-excerpt.module.css";
 
 type Props = {
@@ -14,13 +14,13 @@ type Props = {
 };
 
 export default function UserExcerpt({ user }: Props) {
-    const authenticatedUserId = useGetUserIdFromLocalStorage();
+    const { userIdLoggedIn } = useContext(UserContext);
     const router = useRouter();
 
     async function invokeDeleteUser() {
         const body: DeleteUserBody = {
             userIdToDelete: user.id.toString(),
-            deleterUserId: authenticatedUserId || "",
+            deleterUserId: userIdLoggedIn || "",
         };
         try {
             await deleteUser(body);

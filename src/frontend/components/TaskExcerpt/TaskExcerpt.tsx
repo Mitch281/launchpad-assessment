@@ -1,10 +1,10 @@
 import completeTask from "@/frontend/api/completeTask";
-import useGetUserIdFromLocalStorage from "@/frontend/hooks/useGetUserIdFromLocalStorage";
+import { UserContext } from "@/frontend/context/UserContext";
 import { CompleteTaskBody } from "@/shared/types";
 import { Button } from "@mui/material";
 import { Task } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { startTransition, useState } from "react";
+import { startTransition, useContext, useState } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import styles from "./task-excerpt.module.css";
 
@@ -15,7 +15,7 @@ type Props = {
 export default function TaskExcerpt({ task }: Props) {
     const [completeTaskErrorMessage, setCompleteTaskErrorMessage] =
         useState("");
-    const userIdOfLoggedInUser = useGetUserIdFromLocalStorage();
+    const { userIdLoggedIn } = useContext(UserContext);
     const router = useRouter();
 
     let taskClasses = styles.container;
@@ -26,7 +26,7 @@ export default function TaskExcerpt({ task }: Props) {
     async function invokeCompleteTask() {
         const body: CompleteTaskBody = {
             taskId: task.id.toString(),
-            senderUserId: userIdOfLoggedInUser || "",
+            senderUserId: userIdLoggedIn || "",
         };
         setCompleteTaskErrorMessage("");
         try {

@@ -2,10 +2,10 @@
 
 import createUser from "@/frontend/api/createUser";
 import SuccessMessage from "@/frontend/components/SuccessMessage/SuccessMessage";
-import useGetUserIdFromLocalStorage from "@/frontend/hooks/useGetUserIdFromLocalStorage";
+import { UserContext } from "@/frontend/context/UserContext";
 import { CreateUserBody } from "@/shared/types";
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Form from "../Form/Form";
 
@@ -13,7 +13,7 @@ export default function CreateUserForm() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [isAdmin, setIsAdmin] = useState<"no" | "yes">("no");
-    const userIdOfCreator = useGetUserIdFromLocalStorage();
+    const { userIdLoggedIn } = useContext(UserContext);
     const [errorMessage, setErrorMessage] = useState("");
     const [isSuccessful, setIsSuccessful] = useState(false);
 
@@ -26,7 +26,7 @@ export default function CreateUserForm() {
         };
         const body: CreateUserBody = {
             newUser,
-            userIdOfCreator: userIdOfCreator || "",
+            userIdOfCreator: userIdLoggedIn || "",
         };
         try {
             setIsSuccessful(false);
