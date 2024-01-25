@@ -44,6 +44,7 @@ export default function Navbar() {
 
     return (
         <nav className={styles.container}>
+            <Link href="/">Home</Link>
             <span>
                 {userIdLoggedIn ? `Logged in as ${usernameLoggedIn}` : ""}
             </span>
