@@ -3,8 +3,8 @@ import PageLayout from "@/frontend/components/PageLayout/PageLayout";
 import Tasks from "@/frontend/components/Tasks/Tasks";
 import { Task } from "@prisma/client";
 
-export default async function Page({ params }: { params: { userId: string } }) {
-    const response = await fetchAllTasksByUser(params.userId);
+export default async function Page({ params }: { params: { id: string } }) {
+    const response = await fetchAllTasksByUser(params.id);
     const allTasks = response.data as Task[];
     if (allTasks.length === 0) {
         return (

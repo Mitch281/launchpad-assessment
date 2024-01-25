@@ -28,7 +28,7 @@ export default function LoginForm() {
             if (response.data?.isAdmin) {
                 router.push("admin");
             } else {
-                router.push(`/tasks/${response.data?.userId}`);
+                router.push(`/tasks/user/${response.data?.userId}`);
             }
             AuthService.loginUser(
                 response.data!.userId.toString(),

@@ -24,7 +24,7 @@ export default function HomePage() {
             <>
                 <h1>Welcome to Task Manager</h1>
                 <ButtonLink
-                    href={`tasks/${userIdLoggedIn}`}
+                    href={`tasks/user/${userIdLoggedIn}`}
                     title="View Tasks"
                 />
             </>
