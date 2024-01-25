@@ -1,4 +1,5 @@
 import { UserContext } from "@/frontend/context/UserContext";
+import { TextField } from "@mui/material";
 import { User } from "@prisma/client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useContext } from "react";
@@ -17,16 +18,19 @@ const TaskFiltering = ({ allUsers }: Props) => {
         return <></>;
     }
 
-    function setQueryParam(e: ChangeEvent<HTMLSelectElement>) {
+    function setQueryParam(
+        e: ChangeEvent<HTMLSelectElement | HTMLInputElement>,
+        key: string
+    ) {
         const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form
 
         // update as necessary
         const value = e.target.value.trim();
 
         if (!value) {
-            current.delete("userId");
+            current.delete(key);
         } else {
-            current.set("userId", e.target.value);
+            current.set(key, e.target.value);
         }
 
         // cast to string
@@ -38,13 +42,21 @@ const TaskFiltering = ({ allUsers }: Props) => {
     }
 
     return (
-        <select onChange={setQueryParam}>
-            {allUsers.map((user) => (
-                <option key={user.id} value={user.id}>
-                    {user.username}
-                </option>
-            ))}
-        </select>
+        <>
+            <span>Filter:</span>
+            <select onChange={(e) => setQueryParam(e, "userId")}>
+                {allUsers.map((user) => (
+                    <option key={user.id} value={user.id}>
+                        {user.username}
+                    </option>
+                ))}
+            </select>
+            <TextField
+                variant="outlined"
+                label="Title"
+                onChange={(e) => setQueryParam(e, "title")}
+            />
+        </>
     );
 };
 export default TaskFiltering;

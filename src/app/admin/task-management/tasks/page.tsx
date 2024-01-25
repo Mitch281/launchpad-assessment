@@ -6,10 +6,11 @@ import { Task, User } from "@prisma/client";
 
 export default async function Page(params: {
     params: {};
-    searchParams: { userId?: string };
+    searchParams: { userId?: string; title?: string };
 }) {
     const allTasksResponse = await fetchAllTasksByUser(
-        params.searchParams.userId
+        params.searchParams.userId,
+        params.searchParams.title
     );
     const allUsersResponse = await fetchUsers();
     const allTasks = allTasksResponse.data as Task[];
