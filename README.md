@@ -1,7 +1,7 @@
 # Technologies
 This application uses React with Next.js version 14. We notably utilise the ```app/``` router instead of the ```pages/``` router. On the backend, it utilises the native API routes that Next.js provides (which is built on top of Express). We use a Postgresql database supplied by ElephantSQL, and Prisma for our ORM.
 ## Design Decisions
-Although this application did not need a Meta-Framework such as Next, I prefer to use Next because of the its routing. The convenience of using a folder-based routing system is worth it in my opinion over using something such as React Router.
+Although this application did not need a Meta-Framework such as Next, I prefer to use Next because of the its routing. The convenience of using a folder-based routing system is worth it in my opinion over using something such as React Router. Additionally, having both the frontend and backend code in one folder makes running the project easier.
 
 I also decided to use TypeScript. The type safety it provides, as well as the code autocompletion not only speeds up development, but also ensures application robustness. Some people argue that for a small project like this, TypeScript slows you down, but I disagree, especially with the types Prisma supplies out of the box based on the models defined in your database schema.
 
@@ -41,6 +41,7 @@ The ```frontend/``` folder contains frontend React code, including components, a
 
 Finally, the ```shared/``` folder contains code relevant to both the backend and frontend. In this project, this only contains shared types, but this would contain more in a bigger project.
 # Running the App
+Before running, please ensure you have at least version 18.7 of Node installed.
 To run the app, run the following commands:
 ```
 npm install
