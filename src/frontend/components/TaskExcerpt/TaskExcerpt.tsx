@@ -10,10 +10,9 @@ export default function TaskExcerpt({ task }: Props) {
     console.log(task);
     return (
         <div className={styles.container}>
-            <div>{task.title}</div>
-            <div>{task.description}</div>
-            <div>{task.description}</div>
-            <div>{task.priority}</div>
+            <h1>{task.title}</h1>
+            <p>{task.description}</p>
+            <span>Priority: {task.priority}</span>
         </div>
     );
 }

@@ -17,6 +17,7 @@ export default function Navbar() {
     function logout() {
         localStorage.removeItem("userId");
         localStorage.removeItem("isAdmin");
+        setUserId(null);
         router.push("/login");
     }
 
