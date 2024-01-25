@@ -40,6 +40,6 @@ npm install
 npx prisma db push
 npm run dev
 ```
-There are two users you can log in with: admin and test. admin has adminstrator priveleges, while test does not. Additionally, you can create more users (admin and non-admin) through the admin page .
+There are two users you can log in with: admin and test. admin has adminstrator privileges, while test does not. Additionally, you can create more users ( with the option to create admin users) through the admin page.
 # Important Note
 Next.js caches data on the server. Therefore, any page where data is fetched from a server component (e.g. ```admin/user-management/users``` which displays all users), it may not show the latest data. Please reset cache (ctrl + f5) to see latest data. I tried fixing this, but could not in the given time constraint.
