@@ -61,6 +61,7 @@ export default function TaskExcerpt({ task }: Props) {
             {completeTaskButton}
             {userIdOfTaskElement}
             <ErrorMessage errorMessage={completeTaskErrorMessage} />
+            <span>Due {task.dueDate.toString().slice(0, 10)}</span>
         </div>
     );
 }
