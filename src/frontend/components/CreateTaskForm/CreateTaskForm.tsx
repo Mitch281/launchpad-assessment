@@ -1,9 +1,11 @@
 "use client";
 
 import createTask from "@/frontend/api/createTask";
+import fetchUsers from "@/frontend/api/fetchUsers";
 import SuccessMessage from "@/frontend/components/SuccessMessage/SuccessMessage";
 import { CreateTaskBody, Priority } from "@/shared/types";
 import { Button, TextField } from "@mui/material";
+import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Form from "../Form/Form";
@@ -18,9 +20,23 @@ export default function CreateTaskForm() {
     const [userIdOfCreator, setUserIdOfCreator] = useState<string | null>("");
     const [errorMessage, setErrorMessage] = useState("");
     const [isSuccessful, setIsSuccessful] = useState(false);
+    const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
         setUserIdOfCreator(localStorage.getItem("userId"));
+    }, []);
+
+    useEffect(() => {
+        async function invokeFetchUsers() {
+            try {
+                const json = await fetchUsers();
+                setUsers(json?.data as User[]);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        invokeFetchUsers();
     }, []);
 
     async function handleSubmit(e: React.FormEvent) {
@@ -48,14 +64,18 @@ export default function CreateTaskForm() {
     return (
         <Form onSubmit={handleSubmit}>
             <h1>Create Task</h1>
-            <TextField
-                variant="outlined"
-                label="User Id"
+            <label htmlFor="user">User:</label>
+            <select
+                id="user"
                 value={userId}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setUserId(e.target.value)
-                }
-            />
+                onChange={(e) => setUserId(e.target.value)}
+            >
+                {users.map((user) => (
+                    <option key={user.id} value={user.id}>
+                        {user.username}
+                    </option>
+                ))}
+            </select>
             <TextField
                 variant="outlined"
                 label="Title"
