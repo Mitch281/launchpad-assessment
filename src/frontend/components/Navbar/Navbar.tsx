@@ -21,7 +21,7 @@ export default function Navbar() {
     }
 
     let navbarButtonElements = <></>;
-    if (userIdLoggedIn !== "") {
+    if (userIdLoggedIn) {
         navbarButtonElements = (
             <div className={styles.buttonsContainer}>
                 <Button variant="contained" onClick={logout}>
