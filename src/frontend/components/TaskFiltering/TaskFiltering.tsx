@@ -26,6 +26,11 @@ const TaskFiltering = ({ allUsers }: Props) => {
 
         // update as necessary
         const value = e.target.value.trim();
+        if (value === "default") {
+            // Delete not working?
+            current.delete(key);
+            return;
+        }
 
         if (!value) {
             current.delete(key);
@@ -45,6 +50,9 @@ const TaskFiltering = ({ allUsers }: Props) => {
         <>
             <span>Filter:</span>
             <select onChange={(e) => setQueryParam(e, "userId")}>
+                <option key="select-user" value="default">
+                    Select User
+                </option>
                 {allUsers.map((user) => (
                     <option key={user.id} value={user.id}>
                         {user.username}
