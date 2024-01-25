@@ -19,3 +19,4 @@ npm install
 npx prisma db push
 npm run dev
 ```
+There are two users you can log in with: admin and test. admin has adminstrator priveleges, while test does not.
