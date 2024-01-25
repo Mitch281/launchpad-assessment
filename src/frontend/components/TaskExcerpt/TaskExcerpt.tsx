@@ -17,6 +17,7 @@ export default function TaskExcerpt({ task }: Props) {
         useState("");
     const { userIdLoggedIn } = useContext(UserContext);
     const router = useRouter();
+    const { isAdmin } = useContext(UserContext);
 
     let taskClasses = styles.container;
     if (task.isComplete) {
@@ -38,18 +39,21 @@ export default function TaskExcerpt({ task }: Props) {
         }
     }
 
+    let completeTaskButton = <></>;
+    if (!isAdmin) {
+        completeTaskButton = (
+            <Button variant="contained" onClick={invokeCompleteTask}>
+                Complete Task
+            </Button>
+        );
+    }
+
     return (
         <div className={taskClasses}>
             <h1>{task.title}</h1>
             <p>{task.description}</p>
             <span>Priority: {task.priority}</span>
-            {!task.isComplete ? (
-                <Button variant="contained" onClick={invokeCompleteTask}>
-                    Complete Task
-                </Button>
-            ) : (
-                ""
-            )}
+            {completeTaskButton}
             <ErrorMessage errorMessage={completeTaskErrorMessage} />
         </div>
     );

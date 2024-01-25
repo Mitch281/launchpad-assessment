@@ -1,24 +1,13 @@
-import prisma from "@/backend/lib/prisma";
+import TaskService from "@/backend/services/TaskService";
 import { getQSParamFromURL } from "@/backend/utils/getQueryParamFromUrl";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-    // Could add permission checking here but not enough time.
+    // Could add permission checking here but not enough time. Plus, it is awkward since we cannot access
+    // auth details in react server component, where this data is fetched.
     const userId = getQSParamFromURL("userId", request.url);
-    if (!userId) {
-        return NextResponse.json(
-            { message: "Please supply user id" },
-            { status: 400 }
-        );
-    }
-
     try {
-        const allTasks = await prisma.task.findMany({
-            where: { userId: parseInt(userId) },
-            orderBy: {
-                title: "desc",
-            },
-        });
+        const allTasks = await TaskService.fetchTasks(userId);
         return NextResponse.json(
             { message: "Successfully retreived all tasks", data: allTasks },
             { status: 200 }

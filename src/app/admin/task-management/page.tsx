@@ -1,10 +1,14 @@
-import CreateTaskForm from "@/frontend/components/CreateTaskForm/CreateTaskForm";
+import ButtonLink from "@/frontend/components/ButtonLink";
 import PageLayout from "@/frontend/components/PageLayout/PageLayout";
 
-export default function Page() {
+export default async function Page() {
     return (
         <PageLayout>
-            <CreateTaskForm />
+            <ButtonLink
+                href="task-management/create-task"
+                title="Create Task"
+            />
+            <ButtonLink href="task-management/tasks" title="View Tasks" />
         </PageLayout>
     );
 }

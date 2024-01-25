@@ -3,8 +3,14 @@ import getApiUrl from "../utils/getApiUrl";
 
 const API_URL = getApiUrl();
 
-export default async function fetchAllTasksByUser(userId: string) {
-    const response = await fetch(`${API_URL}/tasks?userId=${userId}`, {
+export default async function fetchAllTasksByUser(userId?: string) {
+    let url;
+    if (userId) {
+        url = `${API_URL}/tasks?userId=${userId}`;
+    } else {
+        url = `${API_URL}/tasks`;
+    }
+    const response = await fetch(url, {
         cache: "no-store",
     });
     const json: FetchTasksResponse = await response.json();
