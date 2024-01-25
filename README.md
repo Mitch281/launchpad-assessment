@@ -18,10 +18,11 @@ The provided .env file contains the database connection credentials. For simplic
 - User privileges (admin vs non-admin).
 - Ability for admins to create tasks.
 - Ability for admins to create, view, and delete users.
+- Ability for admins to search and filter tasks.
 - Ability for general user to complete a task.
 - Ability for general user to view tasks.
 ## Non-completed Tasks
-- Admins cannot edit, search, or sort tasks.
+- Admins cannot edit tasks.
 # Folder Structure
 All code lives in the ```src/``` folder. Within the ```src/``` folder, we have four folders: ```app/```, ```backend/```, ```frontend/```, and ```shared/```. 
 
