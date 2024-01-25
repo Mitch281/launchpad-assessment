@@ -15,7 +15,8 @@ export default function LoginForm() {
     const [usernameOrEmail, setUsernameOrEmail] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const router = useRouter();
-    const { setUserIdLoggedIn, setIsAdmin } = useContext(UserContext);
+    const { setUserIdLoggedIn, setIsAdmin, setUsernameLoggedIn } =
+        useContext(UserContext);
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -31,8 +32,10 @@ export default function LoginForm() {
             }
             AuthService.loginUser(
                 response.data!.userId.toString(),
+                response.data!.username,
                 response.data!.isAdmin,
                 setUserIdLoggedIn,
+                setUsernameLoggedIn,
                 setIsAdmin
             );
         } catch (error: unknown) {

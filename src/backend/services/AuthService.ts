@@ -25,7 +25,11 @@ export default class AuthService {
             return NextResponse.json(
                 {
                     message: "Successfully created account!",
-                    data: { userId: newUser.id, isAdmin: newUser.isAdmin },
+                    data: {
+                        userId: newUser.id,
+                        isAdmin: newUser.isAdmin,
+                        username: newUser.username,
+                    },
                 },
                 { status: 201 }
             );

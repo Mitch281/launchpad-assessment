@@ -16,7 +16,8 @@ export default function SignupForm() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const { setUserIdLoggedIn, setIsAdmin } = useContext(UserContext);
+    const { setUserIdLoggedIn, setIsAdmin, setUsernameLoggedIn } =
+        useContext(UserContext);
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -29,8 +30,10 @@ export default function SignupForm() {
             const response: SignupResponse = await signup(body);
             AuthService.loginUser(
                 response.data!.userId.toString(),
+                response.data!.username,
                 response.data!.isAdmin,
                 setUserIdLoggedIn,
+                setUsernameLoggedIn,
                 setIsAdmin
             );
             router.push(`/tasks/${response.data?.userId}`);

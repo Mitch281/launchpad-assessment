@@ -16,6 +16,7 @@ export type LoginResponse = {
     message: string;
     data?: {
         userId: number;
+        username: string;
         isAdmin: boolean;
     };
 };

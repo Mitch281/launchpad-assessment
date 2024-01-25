@@ -9,7 +9,7 @@ import styles from "./navbar.module.css";
 
 export default function Navbar() {
     const router = useRouter();
-    const { userIdLoggedIn, setUserIdLoggedIn, setIsAdmin } =
+    const { userIdLoggedIn, setUserIdLoggedIn, setIsAdmin, usernameLoggedIn } =
         useContext(UserContext);
 
     function logout() {
@@ -43,9 +43,7 @@ export default function Navbar() {
     return (
         <nav className={styles.container}>
             <span>
-                {userIdLoggedIn
-                    ? `Logged in as user with id ${userIdLoggedIn}`
-                    : ""}
+                {userIdLoggedIn ? `Logged in as ${usernameLoggedIn}` : ""}
             </span>
             {navbarButtonElements}
         </nav>

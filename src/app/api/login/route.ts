@@ -23,7 +23,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
         {
             message: "Successfully logged in",
-            data: { userId: user?.id, isAdmin: user?.isAdmin },
+            data: {
+                userId: user?.id,
+                isAdmin: user?.isAdmin,
+                username: user?.username,
+            },
         },
         { status: 200 }
     );
