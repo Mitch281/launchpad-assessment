@@ -12,6 +12,7 @@ export default function Tasks({ allTasks }: Props) {
     // TODO: DO NOT RENDER TASKS IF user id doe snot match url user id.
     return (
         <section className={styles.container}>
+            <h1>Tasks</h1>
             {allTasks.map((task) => (
                 <TaskExcerpt key={task.id} task={task} />
             ))}
