@@ -5,6 +5,8 @@ Although this application did not need a Meta-Framework such as Next, I prefer t
 
 I also decided to use TypeScript. The type safety it provides, as well as the code autocompletion not only speeds up development, but also ensures application robustness. Some people argue that for a small project like this, TypeScript slows you down, but I disagree, especially with the types Prisma supplies out of the box based on the models defined in your database schema.
 
+I chose Prisma as my ORM because in the Node.js landscape, Prisma is the only ORM I am somewhat familiar with. The only other ORM I have used is the Django ORM. Alternatively, I could have written my own SQL queries but in my opinion, this is a bad move as you can potentially (in general) introduce security risks if you are not careful, and it simply takes more time.
+
 I only used material UI for buttons and inputs. Everything else (mostly page layouts) is done using CSS, as that is what I am more comfortable with, which is important given limited time.
 
 Authentication is done with React Context and local storage. In a typical Next.js application, authentication would be handled on the server **and** client, using something like NextAuth. Since I was building a dummy authentication system (no passwords), I decided that this would be the easiest way to implement it. This also meant that I could not access user data in a react server component, which complicated the code slightly. For example, when fetching tasks for a use, I had to pass the ```userId``` as a url paramater, which is not as elegant as getting the ```userId``` from a user session which again, is what I would do with NextAuth.
