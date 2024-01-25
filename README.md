@@ -1,5 +1,5 @@
 # Technologies
-This application uses React with Next.js version 14. We notably utilise the ```app/``` router instead of the ```pages/``` router. On the backend, it utilises the native API routes that Next.js provides. We use a Postgresql database supplied by ElephantSQL, and Prisma for our ORM.
+This application uses React with Next.js version 14. We notably utilise the ```app/``` router instead of the ```pages/``` router. On the backend, it utilises the native API routes that Next.js provides (which is built on top of Express). We use a Postgresql database supplied by ElephantSQL, and Prisma for our ORM.
 
 Additionally, we use TypeScript for type safety.
 
