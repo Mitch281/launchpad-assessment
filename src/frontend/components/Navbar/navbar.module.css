@@ -1,3 +1,12 @@
 .container {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: lightcyan;
+    padding: 10px 15px;
+}
+
+.buttonsContainer {
+    display: flex;
+    gap: var(--flex-gap);
 }

@@ -23,20 +23,22 @@ export default function Navbar() {
     let navbarButtonElements = <></>;
     if (userIdLoggedIn !== "") {
         navbarButtonElements = (
-            <Button variant="contained" onClick={logout}>
-                Logout
-            </Button>
+            <div className={styles.buttonsContainer}>
+                <Button variant="contained" onClick={logout}>
+                    Logout
+                </Button>
+            </div>
         );
     } else {
         navbarButtonElements = (
-            <>
+            <div className={styles.buttonsContainer}>
                 <Button variant="contained">
                     <Link href="/login">Login</Link>
                 </Button>
                 <Button variant="contained">
                     <Link href="/signup">Signup</Link>
                 </Button>
-            </>
+            </div>
         );
     }
 
