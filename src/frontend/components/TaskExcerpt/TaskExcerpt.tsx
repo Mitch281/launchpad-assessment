@@ -1,4 +1,11 @@
+import completeTask from "@/frontend/api/completeTask";
+import useGetUserIdFromLocalStorage from "@/frontend/hooks/useGetUserIdFromLocalStorage";
+import { CompleteTaskBody } from "@/shared/types";
+import { Button } from "@mui/material";
 import { Task } from "@prisma/client";
+import { useRouter } from "next/navigation";
+import { startTransition, useState } from "react";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import styles from "./task-excerpt.module.css";
 
 type Props = {
@@ -6,11 +13,44 @@ type Props = {
 };
 
 export default function TaskExcerpt({ task }: Props) {
+    const [completeTaskErrorMessage, setCompleteTaskErrorMessage] =
+        useState("");
+    const userIdOfLoggedInUser = useGetUserIdFromLocalStorage();
+    const router = useRouter();
+
+    let taskClasses = styles.container;
+    if (task.isComplete) {
+        taskClasses += ` ${styles.completedTask}`;
+    }
+
+    async function invokeCompleteTask() {
+        const body: CompleteTaskBody = {
+            taskId: task.id.toString(),
+            senderUserId: userIdOfLoggedInUser || "",
+        };
+        setCompleteTaskErrorMessage("");
+        try {
+            await completeTask(body);
+            startTransition(() => router.refresh());
+        } catch (error) {
+            let completeTaskError = error as Error;
+            setCompleteTaskErrorMessage(completeTaskError.message);
+        }
+    }
+
     return (
-        <div className={styles.container}>
+        <div className={taskClasses}>
             <h1>{task.title}</h1>
             <p>{task.description}</p>
             <span>Priority: {task.priority}</span>
+            {!task.isComplete ? (
+                <Button variant="contained" onClick={invokeCompleteTask}>
+                    Complete Task
+                </Button>
+            ) : (
+                ""
+            )}
+            <ErrorMessage errorMessage={completeTaskErrorMessage} />
         </div>
     );
 }

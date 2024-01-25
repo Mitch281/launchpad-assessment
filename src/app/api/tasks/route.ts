@@ -15,6 +15,9 @@ export async function GET(request: NextRequest) {
     try {
         const allTasks = await prisma.task.findMany({
             where: { userId: parseInt(userId) },
+            orderBy: {
+                title: "desc",
+            },
         });
         return NextResponse.json(
             { message: "Successfully retreived all tasks", data: allTasks },

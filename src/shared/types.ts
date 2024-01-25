@@ -64,3 +64,7 @@ export type CompleteTaskBody = {
     senderUserId: string;
     taskId: string;
 };
+
+export type CompleteTaskResponse = {
+    message: string;
+};

@@ -24,7 +24,7 @@ export async function PATCH(request: NextRequest) {
     try {
         await prisma.task.update({
             where: {
-                id: parseInt(body.senderUserId),
+                id: parseInt(body.taskId),
             },
             data: {
                 isComplete: true,
@@ -35,6 +35,7 @@ export async function PATCH(request: NextRequest) {
             { status: 200 }
         );
     } catch (error) {
+        console.log(error);
         return NextResponse.json(
             { message: "Error completing task!" },
             { status: 400 }
