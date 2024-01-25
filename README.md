@@ -24,6 +24,9 @@ The provided .env file contains the database connection credentials. For simplic
 ## Non-completed Tasks
 - Admins cannot edit tasks.
   - This would not be a difficult implementation. I would simply add an "Edit Task" button on each task excerpt, which would open fields to edit the task title, description, priority, or due date.
+- Not every API route has relevant permission checks.
+## Non-completed Non-Functional Tasks
+- Unfortunately, I did not have enough time to clean up all backend business logic into a services folder, which would have been cleaner.
 # Folder Structure
 All code lives in the ```src/``` folder. Within the ```src/``` folder, we have four folders: ```app/```, ```backend/```, ```frontend/```, and ```shared/```. 
 
